@@ -6,6 +6,8 @@ from .models import *
 from django.contrib import messages
 from .forms import *
 from django.urls import reverse
+import stripe
+from django.conf import settings
 
 # Create your views here.
 
@@ -164,7 +166,7 @@ def stripeCheckout(request):
 
 import stripe
 # This is your test secret API key.
-stripe.api_key = 'PLACEHOLDER_FOR_TEMP_REVIEW'
+stripe.api_key = settings.STRIPE_SECRET_KEY
 YOUR_DOMAIN = 'http://127.0.0.1:8000'
 
 @login_required
