@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}User Register Form {% endblock %}
+{% block main-content %}
+{% include "components/messages.html" %}
+
+<div class="container my-5">
+    <div class= "col-md-5 m-auto shadow p-4">
+        <h3 class='text-center'>Register for free! </h3>
+        <hr>
+        <form action= "#" method = post>
+            {% csrf_token %}
+            {{form | crispy}}
+            <input type= "submit" value="Register" class= "btn btn-warning my-3 ">
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

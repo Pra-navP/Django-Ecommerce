@@ -1,0 +1,138 @@
+.asteriskField{
+  color: red !important;
+}
+
+#registerform small{
+  display: none;
+}
+
+#registerform .form-group,
+#loginform .form-group{
+  margin:15px 0;
+}
+
+:root{
+    --main-color:#6f4901;
+}
+
+*{
+    transition: all 0.5s;
+}
+
+
+::-webkit-scrollbar{
+    display: none !important;
+}
+
+/* ==============================Header=================================== */
+header ul a{
+    font-size: 20px !important;
+    color: rgb(77, 77, 77) !important;
+}
+
+header ul a:hover{
+    color: var(--main-color) !important;
+    
+}
+
+header ul .active{
+    font-weight: bold !important;
+    color: var(--main-color) !important;
+
+}
+
+header ul .active::after{
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--main-color) !important;
+}
+
+
+/* =============================Banner=================================== */
+#banner{
+    width: 90%;
+    margin: 4% auto;
+    height: 65vh;
+    border-radius: 30px;
+    box-shadow: 0 0 10px;
+    overflow: hidden;
+}
+
+#banner .carousel-item{
+    height: 65vh;
+}
+
+#banner .carousel-item img{
+    height: 100%;
+    object-fit: fill;
+    
+}
+
+#banner button{
+    width: 50px;
+    height: 50px;
+    background: var(--main-color);
+    border-radius: 50%;
+    top: 45%;
+    margin: 0 20px;
+}
+
+
+/* ==========================footer============================== */
+footer ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+
+
+footer ul a{
+    text-decoration: none;
+    color: rgb(61, 61, 61);
+
+}
+
+
+/* =========================trending, Products======================== */
+#trending a .card,
+#products a .card{
+    height: 360px;
+}
+
+
+#trending .col .card img,
+#products .col .card img{
+    height: 270px;
+    object-fit: cover;
+}
+
+/* ============================New Arrivals========================== */
+
+#newArrivals{
+    width: 100%;
+    
+}
+
+#newArrivals swiper-container {
+      width: 350px;
+      height: 400px;
+    }
+
+#newArrivals   swiper-slide {
+      background-position: center;
+      background-size: cover;
+    }
+
+#newArrivals   swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+
+    #newArrivals .accordion{
+        height: 300px;
+        overflow-y: scroll;
+    }

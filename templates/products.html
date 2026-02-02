@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Products {% endblock %}
+
+
+{% block main-content %}
+{% include "components/messages.html" %}
+
+<div class="container-fluid my-5 ">
+    <div class="d-flex justify-content-between px-5">
+        <form method="get" class='d-flex col-4'>
+            <input type="text" name='search' placeholder='Search Products..' class='form-control rounded-end-0' value="{{search_query|default:''}}">
+
+            {% if selected_category %}
+                <input type="hidden" name='search' value='selected_category'>
+            {% endif %}
+
+            <button type='submit' class='rounded-start-0 btn btn-secondary'><i class='bi bi-search'></i></button>
+        </form>
+        <form method="get">
+            <select name="category" class="form-select" onchange="this.form.submit()">
+                <option value="">Select Categories</option>
+                {% for item in categories %}
+                <option value="{{item.id}}" {% if item.id == selected_categories %}selected{% endif %}>{{item.name}}</option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
+    {% if products %}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 p-5" id="products">
+        {% for item in products %}
+        <div class="col">
+        <a href="{% url 'productdetails' item.id %}" class='text-decoration-none text-dark'>
+            <div class="card shadow-sm">
+                <img src="{{item.image.url}}" class="card-img-top" alt="Image 1">
+                <div class="card-body">
+                    <h5 class="card-title" title='{{item.title}}'>{{item.title|slice:':25'}}{% if item.title|length >= 25 %}...
+                    {% else %}
+                    {% endif %}</h5>
+                    <p class="card-text fw-bold">Price :
+                        <small class='text-decoration-line-through text-muted fw-light'>${{item.actual_price}}</small>
+                        <span class="text-success">${{item.discounted_price}}</span>
+                        </p>
+                    <a href="{% url 'productdetails' item.id %}" class="text-decoration-none text-danger">View More →</a>
+                </div>
+            </div>
+        </a>
+        </div> 
+        
+        {% endfor %}
+        
+    </div>
+    {% else %}
+    <p class='text-center my-2'>No Products Found</p>
+    {% endif %}
+
+</div>
+
+{% endblock  %}

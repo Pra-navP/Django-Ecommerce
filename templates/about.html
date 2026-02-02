@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Home{% endblock %}
+
+{% block main-content %}
+<body>
+    <h2>About Page</h2>
+
+    <a href="{% url 'home' %}">Go to HomePage</a>
+    <h1> </h1>
+    <a href= "{% url 'contact' %}" >Go to Contact Us Page</a>
+
+</body>
+
+{% endblock %}

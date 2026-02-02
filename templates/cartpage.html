@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Cartpage {% endblock %}
+
+
+
+{% block main-content %}
+{% include "components/messages.html" %}
+
+<div class = "container my-5">
+    {% if cart %}
+    
+    
+    <table class="tabel table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>S.No.</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{item.product.title}} </td>
+                <td>${{item.product.discounted_price}} </td>
+                <td class = "text-center">
+                    <img src= "{{item.product.image.url}}" alt = "{{item.product.title}}" width ="50">
+                </td>
+                <td>
+                    <a href = "{% url 'delete-cart' item.id %}" onclick="return confirm('Are you sure to delete this cart Item ?')" class = "btn btn-danger btn-sm"><i class = "bi bi-trash"></i></a>
+                    <a href = "/order-item/{{item.product.id}}/{{item.id}}" class = "btn btn-success btn-sm">Buy Now</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+            {% comment %} <a href = "{% url 'delete-cart' item.id %}"> </a> {% endcomment %}
+                    
+
+
+        </tbody>
+    </table>
+    {% else %}
+    <h2 class= 'text-center display-1 my-5'>Your Cart is Empty</h2>
+    {% endif %}
+</div>
+{% endblock %}

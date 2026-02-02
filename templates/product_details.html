@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Homepage {% endblock %}
+
+
+{% block main-content %}
+{% include "components/messages.html" %}
+
+ <div class="container my-5 shadow p-4 rounded-4" id="productdetails">
+            <div class="d-md-flex justify-content-evenly p-2">
+                <div class="col-md-4">
+                    <img src="{{item.image.url}}" alt="Item 1" width="100%" loading="lazy">
+                </div>
+                <div class="col-md-7">
+                    <p class="mb-0">
+                        <a href="{% url 'home' %}" class="text-decoration-none">Home</a> /
+                        <a href="{% url 'products' %}" class="text-decoration-none">Products</a> /
+                        <small class="text-muted">{{item.category}}</small>
+                    </p>
+                    <h1 class="mb-0">{{item.title}}</h1>
+                    <small>{{item.category}}</small>
+
+                    <h5 class="fw-bold mt-3">Price: <small class="text-decoration-line-through text-muted fw-light">${{item.actual_price}}</small> <span class="text-success">${{item.discounted_price}}</span> </h5>
+
+                    {% if item.stock > 1 %}
+                    <p class="bg-warning badge px-3 py-2 fs-6 text-dark">In Stock</p>
+                    
+                    {% else %}
+                    <p class="bg-danger badge px-3 py-2 fs-6 text-light">Out Of Stock</p>
+
+                    {% endif %}
+                    
+                    <p class="fw-bold">Overview: <span class="text-muted fw-light">{{item.s_description}}</span> </p>
+
+
+                    <div class="d-flex mt-4">
+                        <a href="{% url 'addtocart' item.id %}" class="btn btn-warning me-3">Add to Cart</a>
+                        <a href="#" class="btn btn-outline-success">Add to Wishlist</a>
+                    </div>
+                    
+                </div>
+            </div>
+            <hr>
+            <p class="fw-bold">Description: <span class="text-muted fw-light">{{item.l_description}}</span> </p>
+        </div>
+
+{% endblock  %}

@@ -1,0 +1,12 @@
+# Virtual Environment
+djangoenv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Database (Keeping the local data local)
+db.sqlite3
+
+# Media files (User uploaded images)
+static/uploads/

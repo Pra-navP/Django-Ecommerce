@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}ALL Products {% endblock %}
+{% block main-content %}
+{% include "components/messages.html" %}
+
+<div class="container my-5" id="allproducts">
+    <div class="col-md-11 m-auto p-3 rounded-3 shadow">
+        <div class = "d-flex justify-content-between align-items-center">
+            <h2 class = text-center> All Products </h2>
+            <div>
+                <a href="{% url 'add-product' %}" class='btn btn-warning'>+ Add New</a>
+            </div>
+        </div>
+        <hr>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Trending</th>
+                    <th>Stock</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Created At</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in products %}
+                
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.discounted_price}}</td>
+                    <td>
+                        {% if item.trending %}
+                        <i class="fa-solid fa-square-check text-success"></i>
+                        {% else %}
+                        <i class="fa-solid fa-square-xmark text-danger"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+
+                        {% if item.stock > 0 %}
+                        {{item.stock}}
+                        {% else %}
+                        <span class='badge bg-danger'>Out of stock</span>                     
+                        {% endif %}
+                    </td>
+                    <td class="text-center">
+                        <img src="{{item.image.url}}" alt="{{item.title}}" width="50">
+                    </td>
+                    <td>{{item.s_description}}</td>
+                    <td>{{item.created_at}}</td>
+                    
+                    <td>
+                        <a href="{% url 'update-product' item.id %}" class='btn btn-info btn-sm'><i class='fa-solid fa-pencil'></i></a>
+                        <a href="{% url 'delete-product' item.id  %}" onclick = "return confirm('Are you sure ?')" class="btn btn-danger btn-sm"><i class= 'fa-solid fa-trash'></i></a>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

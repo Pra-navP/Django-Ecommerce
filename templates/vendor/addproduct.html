@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add Product {% endblock %}
+{% block main-content %}
+{% include "components/messages.html" %}
+
+<div class="container my-5">
+    <div class= "col-md-6 m-auto shadow p-4">
+        <h3 class='text-center'>Add Product </h3>
+        <hr>
+        <form action= "#" method = post enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form | crispy}}
+            <input type= "submit" value="Add" class= "btn btn-warning my-3 ">
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

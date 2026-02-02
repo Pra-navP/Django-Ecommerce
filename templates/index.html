@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Homepage {% endblock %}
+
+
+{% block main-content %}
+
+{% include "components/messages.html" %}
+ <!-- start of banner -->
+        <div class="banner" id="banner">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <img src="{% static 'images/b1.jpg' %}" class="d-block w-100" alt="Banner Image">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="{% static 'images/b1.jpg' %}" class="d-block w-100" alt="Banner Image">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="{% static 'images/b1.jpg' %}" class="d-block w-100" alt="Banner Image">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <!-- end of banner -->
+
+        <!-- start of trending Items-->
+         <div class="my-5 px-5" id="trending">
+            <h2 class="text-warning bg-warning-subtle px-3">Trending Items</h2>
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+                {% for item in products %}
+                <div class="col">
+                <a href="{% url 'productdetails' item.id %}" class='text-decoration-none text-dark'>
+                    <div class="card shadow-sm">
+                        <img src="{{item.image.url}}" class="card-img-top" alt="Image 1">
+                        <div class="card-body">
+                            <h5 class="card-title" title='{{item.title}}'>{{item.title|slice:':25'}}{% if item.title|length >= 25 %}...
+                            {% else %}
+                            {% endif %}</h5>
+                            <p class="card-text fw-bold">Price :
+                                <small class='text-decoration-line-through text-muted fw-light'>${{item.actual_price}}</small>
+                                <span class="text-success">${{item.discounted_price}}</span>
+                                </p>
+                            <a href="{% url 'productdetails' item.id %}" class="text-decoration-none text-danger">View More →</a>
+                        </div>
+                    </div>
+                </a>
+                </div> 
+                
+                {% endfor %}
+                
+            </div>
+
+            <div class="text-end my-3">
+            <a href="{% url 'products' %}" class="btn btn-danger btn-sm text-end">All Products</a>
+            </div>
+         </div>
+         <!-- end of trending Items -->
+
+         {% comment %} start of new Arrivals {% endcomment %}
+         <div class="bg-info-subtle p-4" id='newArrivals'>
+            <h2 class='px-5'>New Arrivals</h2>
+            <hr>
+            <div class="d-md-flex justify-content-evenly flex-wrap">
+                <div class="col-md-5 mb-3">
+                    <swiper-container class="mySwiper" pagination="true" effect="cube" grab-cursor="true" cube-effect-shadow="true"
+                        cube-effect-slide-shadows="true" cube-effect-shadow-offset="20" cube-effect-shadow-scale="0.94" autoplay="true">
+                        {% for item in products %}
+                        <swiper-slide>
+                        <img src="{{item.image.url}}" alt='{{item.title}}' loading='lazy' />
+                        </swiper-slide>
+                        {% endfor %}
+                    </swiper-container>
+                </div>
+                <div class="col-md-5">
+                    <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+                    <p class='text-muted'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti dolores numquam vel asperiores velit rem.</p>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Accordion Item #1
+                            </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <strong>This is the first item’s accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Accordion Item #2
+                            </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <strong>This is the second item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Accordion Item #2
+                            </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <strong>This is the second item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                            </div>
+                        </div>
+
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Accordion Item #2
+                            </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <strong>This is the second item’s accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It’s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                            </div>
+                        </div>
+                        
+                        </div>
+                </div>
+                
+
+            </div>
+         </div>
+         {% comment %} end of new Arrivals {% endcomment %}
+{% endblock  %}
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-element-bundle.min.js"></script>
+{% endblock  %}

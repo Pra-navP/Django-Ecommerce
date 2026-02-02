@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}ALL Ordered Items {% endblock %}
+{% block main-content %}
+{% include "components/messages.html" %}
+
+<div class="container my-5" id="allproducts">
+    <div class="col-md-11 m-auto p-3 rounded-3 shadow">
+        <div class = "d-flex justify-content-between align-items-center">
+            <h2 class = text-center> All ordered Items </h2>
+            
+        </div>
+        <hr>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                    <th>Total Price</th>
+                    <th>Quantity</th>
+                    <th>Image</th>
+                    <th>Status</th>
+                    <th>Payment Method</th>
+                    <th>Payment Status</th>
+                    <th>Created At</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in orders %}
+                
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{item.product.title}}</td>
+                    <td>{{item.total_price}}</td>
+                    <td>{{item.quantity}}</td>
+                    
+                    <td class="text-center">
+                        <img src="{{item.product.image.url}}" alt="{{item.product.title}}" width="50">
+                    </td>
+
+                    <td>{{item.status}}</td>
+                    <td>{{item.payment_method}}</td>
+                    <td>{{item.payment_status}}</td>
+                    <td>{{item.created_at}}</td>
+                    
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

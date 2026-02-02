@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}User Login Form {% endblock %}
+{% block main-content %}
+{% include "components/messages.html" %}
+
+<div class="container my-5" id= "loginform">
+    <div class= "col-md-5 m-auto shadow p-4 border-top border-5 border-warning rounded-3">
+        <h3 class='text-center'>Login Here! </h3>
+        <hr>
+        <form action= "#" method = post>
+            {% csrf_token %}
+            {{form | crispy}}
+            <input type= "submit" value="Login" class= "btn btn-warning my-2 ">
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

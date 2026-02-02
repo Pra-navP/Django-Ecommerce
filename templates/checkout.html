@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Stripe Checkout {% endblock %}
+
+{% block main-content %}
+{% include "components/messages.html" %}
+
+<section class="text-center my-5">
+      <div class="product">
+        <img src="/{{order.product.image}}" alt="The cover of Stubborn Attachments" width ="100%" height="200px" style="object-fit:contain;" />
+        <div class="description">
+          <h3>{{order.product.title}}</h3>
+          <p><span class="text-success fs-5">Rs. {{order.product.discounted_price}}</span>/unit</p>
+        </div>
+      </div>
+      <a href = "/create-checkout-session/{{order.id}}/{{cart.id}}" class="btn btn-success my-2"> Checkout</a>
+    </section>
+
+
+{% endblock %}
